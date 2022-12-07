@@ -7,5 +7,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ValoracionRepository extends JpaRepository<ValoracionEntity, Integer> {
     // Queries
-    Integer countByEmpresaId(Integer empresaId);
+    //Integer countByEmpresaId(Integer empresaId);
 }

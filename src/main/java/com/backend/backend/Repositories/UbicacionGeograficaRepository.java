@@ -7,5 +7,4 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface UbicacionGeograficaRepository extends JpaRepository<UbicacionGeograficaEntity, Integer> {
 // Queries
-    UbicacionGeograficaEntity findByNombre(String nombre);
 }
