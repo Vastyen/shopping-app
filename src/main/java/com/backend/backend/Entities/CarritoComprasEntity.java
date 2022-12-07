@@ -2,6 +2,7 @@ package com.backend.backend.Entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
+import org.hibernate.annotations.GeneratorType;
 
 import javax.persistence.*;
 import java.util.Set;
@@ -10,6 +11,7 @@ import java.util.Set;
 @Entity
 public class CarritoComprasEntity {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_carrito", nullable = false, unique = true)
     private Integer id;
     // UsuarioEntity

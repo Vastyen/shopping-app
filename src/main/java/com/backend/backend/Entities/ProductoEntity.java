@@ -9,6 +9,7 @@ import java.util.Set;
 @Data
 @Entity
 public class ProductoEntity {
+
     @Id
     @Column(name = "id_producto", nullable = false, unique = true)
     private Integer id;
