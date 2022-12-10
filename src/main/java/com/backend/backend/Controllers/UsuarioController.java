@@ -1,6 +1,11 @@
 package com.backend.backend.Controllers;
 
+import com.backend.backend.Entities.EmpresaEntity;
+import com.backend.backend.Entities.UsuarioEmpresaEntity;
 import com.backend.backend.Entities.UsuarioEntity;
+import com.backend.backend.Services.UsuarioEmpresaService;
+import com.backend.backend.Repositories.UsuarioEmpresaRepository;
+import com.backend.backend.Services.UsuarioEmpresaService;
 import com.backend.backend.Services.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -14,6 +19,9 @@ import java.util.ArrayList;
 public class UsuarioController {
     @Autowired
     UsuarioService usuarioService;
+
+    @Autowired
+    UsuarioEmpresaService usuarioEmpresaService;
 
     @GetMapping("/getAllUsuarios")
     public ResponseEntity<Iterable<UsuarioEntity>> getAllUsuarios() {

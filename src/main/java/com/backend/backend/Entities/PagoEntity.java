@@ -1,9 +1,16 @@
 package com.backend.backend.Entities;
-import lombok.Data;
+
+import lombok.*;
+import org.hibernate.Hibernate;
 
 import javax.persistence.*;
+import java.util.Objects;
+
 // Relaciones Listas
-@Data
+@Getter
+@Setter
+@ToString
+@RequiredArgsConstructor
 @Entity
 public class PagoEntity {
     @Id
@@ -16,4 +23,17 @@ public class PagoEntity {
     @ManyToOne
     @JoinColumn(name = "id_usuario")
     private UsuarioEntity id_usuario;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
+        PagoEntity that = (PagoEntity) o;
+        return id != null && Objects.equals(id, that.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return getClass().hashCode();
+    }
 }

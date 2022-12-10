@@ -1,9 +1,16 @@
 package com.backend.backend.Entities;
-import lombok.Data;
+
+import lombok.*;
+import org.hibernate.Hibernate;
 
 import javax.persistence.*;
+import java.util.Objects;
+
 // Relaciones Listas
-@Data
+@Getter
+@Setter
+@ToString
+@RequiredArgsConstructor
 @Entity
 public class MetodoPagoEntity {
     @Id
@@ -14,5 +21,19 @@ public class MetodoPagoEntity {
             cascade = {CascadeType.MERGE, CascadeType.PERSIST},
             fetch = FetchType.LAZY,
             orphanRemoval = true)
+    @ToString.Exclude
     private PagoEntity pago;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
+        MetodoPagoEntity that = (MetodoPagoEntity) o;
+        return id != null && Objects.equals(id, that.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return getClass().hashCode();
+    }
 }

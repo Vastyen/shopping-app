@@ -7,7 +7,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 @Data
-@Entity
+@Entity(name = "empresa")
 public class EmpresaEntity {
     @Id
     @Column(name = "id_Empresa", nullable = false, unique = true)
@@ -15,12 +15,15 @@ public class EmpresaEntity {
     private Integer restriccion_edad;
     private String nombre_empresa;
     // UbicacionGeograficaEntity
-    @OneToOne
+    @JsonIgnore
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_ubicacion")
     private UbicacionGeograficaEntity id_ubicacion;
-    // ListaFavoritosEntity
+    // ValoracionEntity
+    @JsonIgnore
     @OneToMany(mappedBy = "id_empresa",
             cascade = {CascadeType.MERGE, CascadeType.PERSIST},
+            fetch = FetchType.LAZY,
             orphanRemoval = true)
     private Set<ValoracionEntity> valoraciones;
     // EmpresaProductoEntity
@@ -40,17 +43,10 @@ public class EmpresaEntity {
             inverseJoinColumns = {@JoinColumn(name = "id_tipo_producto")})
     private Set<TipoProductoEntity> tipos_productos;
     // EmpresasFavoritasEntity
+    @JsonIgnore
     @OneToMany(mappedBy = "id_empresa",
             fetch = FetchType.LAZY,
             cascade = {CascadeType.MERGE, CascadeType.PERSIST},
             orphanRemoval = true)
     private Set<UsuarioEmpresaEntity> empresas_favoritas;
-
-    // Método extra
-    public Set<UsuarioEntity> getUsuariosFavoritos() {
-        return getEmpresas_favoritas()
-                .stream()
-                .map(UsuarioEmpresaEntity::getId_usuario)
-                .collect(Collectors.toSet());
-    }
 }

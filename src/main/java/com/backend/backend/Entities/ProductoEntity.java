@@ -1,12 +1,18 @@
 package com.backend.backend.Entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.Data;
+import lombok.*;
+import org.hibernate.Hibernate;
+
 import javax.persistence.*;
+import java.util.Objects;
 import java.util.Set;
 
 
-@Data
+@Getter
+@Setter
+@ToString
+@RequiredArgsConstructor
 @Entity
 public class ProductoEntity {
 
@@ -24,11 +30,26 @@ public class ProductoEntity {
     @ManyToMany(fetch = FetchType.LAZY,
             cascade = {CascadeType.MERGE, CascadeType.PERSIST},
             mappedBy = "productos")
+    @ToString.Exclude
     private Set<CarritoComprasEntity> carritosCompra;
     // UsuarioProductoEntity
     @JsonIgnore
     @ManyToMany(fetch = FetchType.LAZY,
             cascade = {CascadeType.MERGE, CascadeType.PERSIST},
             mappedBy = "productos")
+    @ToString.Exclude
     private Set<UsuarioEntity> usuarios;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
+        ProductoEntity that = (ProductoEntity) o;
+        return id != null && Objects.equals(id, that.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return getClass().hashCode();
+    }
 }

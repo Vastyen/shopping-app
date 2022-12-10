@@ -1,12 +1,18 @@
 package com.backend.backend.Entities;
 
 
-import lombok.Data;
+import lombok.*;
+import org.hibernate.Hibernate;
 
 import javax.persistence.*;
+import java.util.Objects;
 import java.util.Set;
+
 // Relaciones Listas
-@Data
+@Getter
+@Setter
+@ToString
+@RequiredArgsConstructor
 @Entity
 public class RolEntity {
     @Id
@@ -17,9 +23,24 @@ public class RolEntity {
     @OneToMany(mappedBy = "rol",
             cascade = {CascadeType.MERGE, CascadeType.PERSIST},
             orphanRemoval = true)
+    @ToString.Exclude
     private Set<UsuarioEntity> usuarios;
     @OneToMany(mappedBy = "rol",
             cascade = {CascadeType.MERGE, CascadeType.PERSIST},
             orphanRemoval = true)
+    @ToString.Exclude
     private Set<PermisoEntity> permisos;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
+        RolEntity rolEntity = (RolEntity) o;
+        return id != null && Objects.equals(id, rolEntity.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return getClass().hashCode();
+    }
 }
