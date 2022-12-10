@@ -45,6 +45,7 @@ public class UsuarioEmpresaController {
 
         return ResponseEntity.ok(empresas);
     }
+    /*
     @GetMapping("/dislikeEmpresa/{idUsuario}/{idEmpresa}")
     public ResponseEntity<UsuarioEmpresaEntity> dislikeEmpresa(@PathVariable("idUsuario") Integer idUsuario, @PathVariable("idEmpresa") Integer idEmpresa) {
         UsuarioEmpresaEntity usuarioEmpresaEntity = usuarioEmpresaService.dislikeEmpresa(idUsuario, idEmpresa);
@@ -60,5 +61,5 @@ public class UsuarioEmpresaController {
             return ResponseEntity.notFound().build();
         }
         return ResponseEntity.ok(usuarioEmpresaEntity);
-    }
+    }*/
 }

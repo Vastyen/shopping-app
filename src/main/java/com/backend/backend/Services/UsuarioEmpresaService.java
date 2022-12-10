@@ -15,7 +15,7 @@ public class UsuarioEmpresaService {
     public ArrayList<UsuarioEmpresaEntity> getAllEmpresasFavoritas() {
         return (ArrayList<UsuarioEmpresaEntity>) usuarioEmpresaRepository.findAll();
     }
-
+/*
     public UsuarioEmpresaEntity dislikeEmpresa(Integer idUsuario, Integer idEmpresa) {
         UsuarioEmpresaEntity usuarioEmpresaEntity = usuarioEmpresaRepository.findById_usuarioAndId_empresa(idUsuario, idEmpresa);
         if(usuarioEmpresaEntity != null) {
@@ -32,5 +32,5 @@ public class UsuarioEmpresaService {
             usuarioEmpresaRepository.save(usuarioEmpresaEntity);
         }
         return usuarioEmpresaEntity;
-    }
+    }*/
 }
