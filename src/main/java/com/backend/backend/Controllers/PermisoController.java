@@ -4,12 +4,25 @@ import com.backend.backend.Entities.PermisoEntity;
 import com.backend.backend.Services.PermisoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+
+@Controller
+@RequestMapping("/permiso")
 public class PermisoController {
     @Autowired
     PermisoService permisoService;
 
+    @GetMapping("/getAllPermisos")
+    public ResponseEntity<ArrayList<PermisoEntity>> getAllPermisos() {
+        ArrayList<PermisoEntity> permisoEntities = permisoService.getAllPermisos();
+        if (permisoEntities == null) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(permisoEntities);
+    }
     @GetMapping("/getPermisoById/{id_permiso}")
     public ResponseEntity<PermisoEntity> getPermisoById(@PathVariable("id_permiso") Integer id_permiso) {
         PermisoEntity permisoEntity = permisoService.getPermisoById(id_permiso);

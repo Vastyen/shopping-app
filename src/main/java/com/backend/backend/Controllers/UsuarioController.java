@@ -7,11 +7,22 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+
 @Controller
+@RequestMapping("/usuario")
 public class UsuarioController {
     @Autowired
     UsuarioService usuarioService;
 
+    @GetMapping("/getAllUsuarios")
+    public ResponseEntity<Iterable<UsuarioEntity>> getAllUsuarios() {
+        ArrayList<UsuarioEntity> usuarioEntities = usuarioService.getAllUsuarios();
+        if (usuarioEntities == null) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(usuarioEntities);
+    }
     @GetMapping("/getUsuarioById/{id_usuario}")
     public ResponseEntity<UsuarioEntity> getUsuarioById(@PathVariable("id_usuario") Integer id_usuario) {
         UsuarioEntity usuarioEntity = usuarioService.getUsuarioById(id_usuario);
@@ -27,7 +38,11 @@ public class UsuarioController {
         if (usuarioEntity1 == null) {
             return ResponseEntity.notFound().build();
         }
-        usuarioService.saveUsuario(usuarioEntity);
+        usuarioEntity1.setNombre_usuario(usuarioEntity.getNombre_usuario());
+        usuarioEntity1.setApellido_usuario(usuarioEntity.getApellido_usuario());
+        usuarioEntity1.setCorreo_usuario(usuarioEntity.getCorreo_usuario());
+        usuarioEntity1.setContrasena(usuarioEntity.getContrasena());
+        usuarioEntity1.setFecha_nacimiento(usuarioEntity.getFecha_nacimiento());
         return ResponseEntity.ok(usuarioEntity);
     }
 

@@ -7,11 +7,22 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+
 @Controller
+@RequestMapping("/tipoProducto")
 public class TipoProductoController {
     @Autowired
     TipoProductoService tipoProductoService;
 
+    @GetMapping("/getAllTipoProducto")
+    public ResponseEntity<ArrayList<TipoProductoEntity>> getAllTipoProducto() {
+        ArrayList<TipoProductoEntity> tipoProductoEntities = tipoProductoService.getAllTipoProducto();
+        if (tipoProductoEntities == null) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(tipoProductoEntities);
+    }
     @GetMapping("/getTipoProductoById/{id_tipo_producto}")
     public ResponseEntity<TipoProductoEntity> getTipoProductoById(@PathVariable("id_tipo_producto") Integer id_tipo_producto) {
         TipoProductoEntity tipoProductoEntity = tipoProductoService.getTipoProductoById(id_tipo_producto);

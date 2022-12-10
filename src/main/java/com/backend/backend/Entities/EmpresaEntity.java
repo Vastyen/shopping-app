@@ -4,6 +4,7 @@ import lombok.Data;
 
 import javax.persistence.*;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Data
 @Entity
@@ -39,9 +40,17 @@ public class EmpresaEntity {
             inverseJoinColumns = {@JoinColumn(name = "id_tipo_producto")})
     private Set<TipoProductoEntity> tipos_productos;
     // EmpresasFavoritasEntity
-    @JsonIgnore
-    @ManyToMany(fetch = FetchType.LAZY,
+    @OneToMany(mappedBy = "id_empresa",
+            fetch = FetchType.LAZY,
             cascade = {CascadeType.MERGE, CascadeType.PERSIST},
-            mappedBy = "empresas")
-    private Set<UsuarioEntity> usuarios;
+            orphanRemoval = true)
+    private Set<UsuarioEmpresaEntity> empresas_favoritas;
+
+    // Método extra
+    public Set<UsuarioEntity> getUsuariosFavoritos() {
+        return getEmpresas_favoritas()
+                .stream()
+                .map(UsuarioEmpresaEntity::getId_usuario)
+                .collect(Collectors.toSet());
+    }
 }

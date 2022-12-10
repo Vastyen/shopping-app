@@ -7,13 +7,24 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+
 import java.util.ArrayList;
 import java.util.List;
 
 @Controller
+@RequestMapping("/ubicacionGeografica")
 public class UbicacionGeograficaController {
     @Autowired
     UbicacionGeograficaService ubicacionGeograficaService;
+
+    @GetMapping("/getAllUbicacionGeografica")
+    public ResponseEntity<List<UbicacionGeograficaEntity>> getAllUbicacionGeografica() {
+        ArrayList<UbicacionGeograficaEntity> ubicacionGeograficaList = ubicacionGeograficaService.getAllUbicacionGeografica();
+        if (ubicacionGeograficaList.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(ubicacionGeograficaList);
+    }
 
     @GetMapping("/getUbicacionGeograficaById/{id_ubicacion_geografica}")
     public ResponseEntity<UbicacionGeograficaEntity> getUbicacionGeograficaById(@PathVariable("id_ubicacion_geografica") Integer id_ubicacion_geografica) {
@@ -64,7 +75,7 @@ public class UbicacionGeograficaController {
 
     @GetMapping("/getUbicacionGeograficaByComuna/{comuna}")
     public ResponseEntity<List<UbicacionGeograficaEntity>> getUbicacionGeograficaByComuna(@PathVariable("comuna") String comuna) {
-        List<UbicacionGeograficaEntity> ubicacionGeograficaEntityList = ubicacionGeograficaService.getUbicacionGeograficaByProvincia(comuna);
+        List<UbicacionGeograficaEntity> ubicacionGeograficaEntityList = ubicacionGeograficaService.getUbicacionGeograficaByComuna(comuna);
         if (ubicacionGeograficaEntityList == null) {
             return ResponseEntity.notFound().build();
         }

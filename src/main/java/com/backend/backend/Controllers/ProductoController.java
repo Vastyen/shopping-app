@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 
 @Controller
+@RequestMapping("/producto")
 public class ProductoController {
 
 
@@ -46,7 +47,6 @@ public class ProductoController {
         productoUpdated.setTipo(producto.getTipo());
         productoUpdated.setVentas_producto(producto.getVentas_producto());
         productoUpdated.setCarritosCompra(producto.getCarritosCompra());
-        productoUpdated.setUsuarios(producto.getUsuarios());
         productoService.updateProducto(productoUpdated);
         return ResponseEntity.ok(productoUpdated);
     }

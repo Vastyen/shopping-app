@@ -1,9 +1,7 @@
 package com.backend.backend.Controllers;
 
 import com.backend.backend.Entities.CarritoComprasEntity;
-import com.backend.backend.Entities.ProductoEntity;
 import com.backend.backend.Services.CarritoComprasService;
-import com.backend.backend.Services.ProductoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -31,9 +29,7 @@ public class CarritoComprasController {
         if (carritoComprasEntity1 == null) {
             return ResponseEntity.notFound().build();
         }
-        carritoComprasEntity1.setId_usuario(carritoComprasEntity.getId_usuario());
-        carritoComprasEntity1.setProductos(carritoComprasEntity.getProductos());
-        carritoComprasService.saveCarritoCompras(carritoComprasEntity);
+        carritoComprasService.updateCarritoCompras(carritoComprasEntity, id_carrito);
         return ResponseEntity.ok(carritoComprasEntity);
     }
     @PostMapping("/createCarritoCompras")
@@ -47,6 +43,14 @@ public class CarritoComprasController {
     @DeleteMapping("/deleteCarritoComprasById/{id_carrito}")
     public ResponseEntity<CarritoComprasEntity> deleteCarritoComprasById(@PathVariable("id_carrito") Integer id_carrito) {
         CarritoComprasEntity carritoComprasEntity = carritoComprasService.deleteCarritoComprasById(id_carrito);
+        if (carritoComprasEntity == null) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(carritoComprasEntity);
+    }
+    @PostMapping("/addProductoToCarritoCompras/{id_carrito}/{id_producto}")
+    public ResponseEntity<CarritoComprasEntity> addProductoToCarritoCompras(@PathVariable("id_carrito") Integer id_carrito, @PathVariable("id_producto") Integer id_producto) {
+        CarritoComprasEntity carritoComprasEntity = carritoComprasService.addProductoToCarritoCompras(id_carrito, id_producto);
         if (carritoComprasEntity == null) {
             return ResponseEntity.notFound().build();
         }

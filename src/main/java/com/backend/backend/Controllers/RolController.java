@@ -7,11 +7,22 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+
 @Controller
+@RequestMapping("/rol")
 public class RolController {
     @Autowired
     RolService rolService;
 
+    @GetMapping("/getAllRoles")
+    public ResponseEntity<ArrayList<RolEntity>> getAllRoles() {
+        ArrayList<RolEntity> rolEntities = rolService.getAllRoles();
+        if (rolEntities == null) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(rolEntities);
+    }
     @GetMapping("/getRolById/{id_rol}")
     public ResponseEntity<RolEntity> getRolById(@PathVariable("id_rol") Integer id_rol) {
         RolEntity rolEntity = rolService.getRolById(id_rol);

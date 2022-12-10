@@ -7,11 +7,22 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+
 @Controller
+@RequestMapping("/pago")
 public class PagoController {
     @Autowired
     PagoService pagoService;
 
+    @GetMapping("/getAllPago")
+    public ResponseEntity<ArrayList<PagoEntity>> getAllPago() {
+        ArrayList<PagoEntity> pagoEntities = pagoService.getAllPago();
+        if (pagoEntities == null) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(pagoEntities);
+    }
     @GetMapping("/getPagoById/{id_pago}")
     public ResponseEntity<PagoEntity> getPagoById(@PathVariable("id_pago") Integer id_pago) {
         PagoEntity pagoEntity = pagoService.getPagoById(id_pago);
