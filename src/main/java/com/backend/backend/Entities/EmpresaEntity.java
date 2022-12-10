@@ -10,8 +10,9 @@ import java.util.stream.Collectors;
 @Entity(name = "empresa")
 public class EmpresaEntity {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_Empresa", nullable = false, unique = true)
-    private Integer id;
+    private Integer id_empresa;
     private Integer restriccion_edad;
     private String nombre_empresa;
     // UbicacionGeograficaEntity

@@ -10,6 +10,8 @@ import java.util.ArrayList;
 
 @Repository
 public interface UsuarioEmpresaRepository extends JpaRepository<UsuarioEmpresaEntity, Integer> {
-    UsuarioEmpresaEntity findById_usuarioAndId_empresa(Integer idUsuario, Integer idEmpresa);
+
     // Queries
+    @Query(value = "SELECT * FROM empresas_favoritas WHERE id_usuario = ?1 AND id_empresa = ?2", nativeQuery = true)
+    UsuarioEmpresaEntity getUsuarioEmpresa(Integer idUsuario, Integer idEmpresa);
 }

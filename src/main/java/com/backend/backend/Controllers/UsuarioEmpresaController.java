@@ -7,9 +7,7 @@ import com.backend.backend.Services.UsuarioEmpresaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.Objects;
@@ -38,27 +36,29 @@ public class UsuarioEmpresaController {
         }
         ArrayList<EmpresaEntity> empresas = new ArrayList<>();
         for (UsuarioEmpresaEntity ue : usuarioEmpresaEntity) {
-            if(Objects.equals(idUsuario, ue.getId_usuario().getId_usuario()) && ue.isFavorito()) {
+            if (Objects.equals(idUsuario, ue.getId_usuario().getId_usuario()) && ue.isFavorito()) {
                 empresas.add(ue.getId_empresa());
             }
         }
 
         return ResponseEntity.ok(empresas);
     }
-    @GetMapping("/dislikeEmpresa/{idUsuario}/{idEmpresa}")
-    public ResponseEntity<UsuarioEmpresaEntity> dislikeEmpresa(@PathVariable("idUsuario") Integer idUsuario, @PathVariable("idEmpresa") Integer idEmpresa) {
-        UsuarioEmpresaEntity usuarioEmpresaEntity = usuarioEmpresaService.dislikeEmpresa(idUsuario, idEmpresa);
-        if (usuarioEmpresaEntity == null) {
+    @PostMapping("/createUsuarioEmpresa")
+    public ResponseEntity<UsuarioEmpresaEntity> createUsuarioEmpresa(@RequestBody UsuarioEmpresaEntity usuarioEmpresaEntity) {
+        UsuarioEmpresaEntity usuarioEmpresaEntity1 = usuarioEmpresaService.createUsuarioEmpresa(usuarioEmpresaEntity);
+        if (usuarioEmpresaEntity1 == null) {
             return ResponseEntity.notFound().build();
         }
-        return ResponseEntity.ok(usuarioEmpresaEntity);
+        return ResponseEntity.ok(usuarioEmpresaEntity1);
     }
-    @GetMapping("/likeEmpresa/{idUsuario}/{idEmpresa}")
-    public ResponseEntity<UsuarioEmpresaEntity> likeEmpresa(@PathVariable("idUsuario") Integer idUsuario, @PathVariable("idEmpresa") Integer idEmpresa) {
-        UsuarioEmpresaEntity usuarioEmpresaEntity = usuarioEmpresaService.likeEmpresa(idUsuario, idEmpresa);
-        if (usuarioEmpresaEntity == null) {
+
+    @PutMapping("/updateLikeEmpresa/{status}")
+    public ResponseEntity<UsuarioEmpresaEntity> updateLikeEmpresa(@RequestBody UsuarioEmpresaEntity usuarioEmpresaEntity, @PathVariable("status") Integer status) {
+        UsuarioEmpresaEntity usuarioEmpresaEntity1 = usuarioEmpresaService.updateLikeEmpresa(usuarioEmpresaEntity.getId_usuario(), usuarioEmpresaEntity.getId_empresa(), status);
+        if (usuarioEmpresaEntity1 == null) {
             return ResponseEntity.notFound().build();
         }
-        return ResponseEntity.ok(usuarioEmpresaEntity);
+        return ResponseEntity.ok(usuarioEmpresaEntity1);
     }
 }
+
