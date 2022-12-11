@@ -20,7 +20,7 @@ public class UsuarioEmpresaController {
     UsuarioEmpresaService usuarioEmpresaService;
 
     @GetMapping("/getAllEmpresasFavoritas")
-    public ResponseEntity<Iterable<UsuarioEmpresaEntity>> getAllEmpresasFavoritas() {
+    public ResponseEntity<ArrayList<UsuarioEmpresaEntity>> getAllEmpresasFavoritas() {
         ArrayList<UsuarioEmpresaEntity> usuarioEmpresaEntities = usuarioEmpresaService.getAllEmpresasFavoritas();
         if (usuarioEmpresaEntities == null) {
             return ResponseEntity.notFound().build();

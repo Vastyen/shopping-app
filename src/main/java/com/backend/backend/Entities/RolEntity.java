@@ -22,6 +22,7 @@ public class RolEntity {
     private String alias_rol;
     @OneToMany(mappedBy = "rol",
             cascade = {CascadeType.MERGE, CascadeType.PERSIST},
+            fetch = FetchType.LAZY,
             orphanRemoval = true)
     @ToString.Exclude
     private Set<UsuarioEntity> usuarios;

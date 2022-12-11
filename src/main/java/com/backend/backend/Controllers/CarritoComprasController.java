@@ -7,6 +7,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+
 @Controller
 @RequestMapping("/carritoCompras")
 public class CarritoComprasController {
@@ -14,10 +16,25 @@ public class CarritoComprasController {
     @Autowired
     CarritoComprasService carritoComprasService;
 
-
+    @GetMapping("/getAllCarritoCompras")
+    public ResponseEntity<ArrayList<CarritoComprasEntity>> getAllCarritoCompras() {
+        ArrayList<CarritoComprasEntity> carritoComprasEntities = carritoComprasService.getAllCarritoCompras();
+        if (carritoComprasEntities == null) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(carritoComprasEntities);
+    }
     @GetMapping("/getCarritoComprasById/{id_carrito}")
     public ResponseEntity<CarritoComprasEntity> getCarritoComprasById(@PathVariable("id_carrito") Integer id_carrito) {
         CarritoComprasEntity carritoComprasEntity = carritoComprasService.getCarritoComprasById(id_carrito);
+        if (carritoComprasEntity == null) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(carritoComprasEntity);
+    }
+    @GetMapping("/getCarritoComprasByIdUsuario/{id_usuario}")
+    public ResponseEntity<CarritoComprasEntity> getCarritoComprasByIdUsuario(@PathVariable("id_usuario") Integer id_usuario) {
+        CarritoComprasEntity carritoComprasEntity = carritoComprasService.getCarritoComprasByIdUsuario(id_usuario);
         if (carritoComprasEntity == null) {
             return ResponseEntity.notFound().build();
         }
@@ -43,14 +60,6 @@ public class CarritoComprasController {
     @DeleteMapping("/deleteCarritoComprasById/{id_carrito}")
     public ResponseEntity<CarritoComprasEntity> deleteCarritoComprasById(@PathVariable("id_carrito") Integer id_carrito) {
         CarritoComprasEntity carritoComprasEntity = carritoComprasService.deleteCarritoComprasById(id_carrito);
-        if (carritoComprasEntity == null) {
-            return ResponseEntity.notFound().build();
-        }
-        return ResponseEntity.ok(carritoComprasEntity);
-    }
-    @PostMapping("/addProductoToCarritoCompras/{id_carrito}/{id_producto}")
-    public ResponseEntity<CarritoComprasEntity> addProductoToCarritoCompras(@PathVariable("id_carrito") Integer id_carrito, @PathVariable("id_producto") Integer id_producto) {
-        CarritoComprasEntity carritoComprasEntity = carritoComprasService.addProductoToCarritoCompras(id_carrito, id_producto);
         if (carritoComprasEntity == null) {
             return ResponseEntity.notFound().build();
         }

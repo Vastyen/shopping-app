@@ -9,7 +9,6 @@ import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.Objects;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 @Getter
 @Setter
@@ -44,6 +43,7 @@ public class UsuarioEntity {
     @ToString.Exclude
     private Set<PagoEntity> id_pago;
     // CarritoComprasEntity
+    @JsonManagedReference
     @OneToMany(mappedBy = "id_usuario",
             cascade = {CascadeType.MERGE, CascadeType.PERSIST},
             fetch = FetchType.LAZY,
@@ -73,14 +73,6 @@ public class UsuarioEntity {
     @ToString.Exclude
     private Set<UsuarioEmpresaEntity> empresas_favoritas;
 
-
-    // Método Extra
-    public Set<EmpresaEntity> getEmpresasFavoritas() {
-        return getEmpresas_favoritas()
-                .stream()
-                .map(UsuarioEmpresaEntity::getId_empresa)
-                .collect(Collectors.toSet());
-    }
 
     @Override
     public boolean equals(Object o) {

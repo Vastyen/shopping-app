@@ -1,4 +1,5 @@
 package com.backend.backend.Entities;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
@@ -14,6 +15,7 @@ public class EmpresaEntity {
     @Column(name = "id_Empresa", nullable = false, unique = true)
     private Integer id_empresa;
     private Integer restriccion_edad;
+    @Column(nullable = false, unique = true)
     private String nombre_empresa;
     // UbicacionGeograficaEntity
     @JsonIgnore
@@ -44,7 +46,7 @@ public class EmpresaEntity {
             inverseJoinColumns = {@JoinColumn(name = "id_tipo_producto")})
     private Set<TipoProductoEntity> tipos_productos;
     // EmpresasFavoritasEntity
-    @JsonIgnore
+    @JsonBackReference
     @OneToMany(mappedBy = "id_empresa",
             fetch = FetchType.LAZY,
             cascade = {CascadeType.MERGE, CascadeType.PERSIST},

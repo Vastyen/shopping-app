@@ -7,5 +7,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface CarritoComprasRepository extends JpaRepository<CarritoComprasEntity, Integer> {
+    @Query(value = "SELECT * FROM carrito_compras WHERE id_usuario = ?1", nativeQuery = true)
+    CarritoComprasEntity findUsingIdUsuario(Integer idUsuario);
     // Queries
 }

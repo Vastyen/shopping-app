@@ -9,5 +9,4 @@ import java.util.ArrayList;
 @Repository
 public interface EmpresaRepository extends JpaRepository<EmpresaEntity, Integer> {
     // Queries
-    //ArrayList<EmpresaEntity> findAllByUsuarioId(Integer id);
 }

@@ -2,6 +2,7 @@ package com.backend.backend.Entities;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 import org.hibernate.Hibernate;
 
@@ -21,10 +22,12 @@ public class UsuarioEmpresaEntity {
     private boolean favorito;
     // UsuarioEntity
     @JsonBackReference
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_usuario")
+    @ToString.Exclude
     private UsuarioEntity id_usuario;
     // EmpresaEntity
+    @JsonManagedReference
     @ManyToOne
     @JoinColumn(name = "id_empresa")
     private EmpresaEntity id_empresa;

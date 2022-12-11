@@ -1,5 +1,6 @@
 package com.backend.backend.Entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import org.hibernate.Hibernate;
@@ -26,12 +27,13 @@ public class ProductoEntity {
     private Integer stock;
     private Integer ventas_producto;
     // ProductoCarritoEntity
-    @JsonIgnore
-    @ManyToMany(fetch = FetchType.LAZY,
+    @JsonBackReference
+    @OneToMany(mappedBy = "id_producto",
             cascade = {CascadeType.MERGE, CascadeType.PERSIST},
-            mappedBy = "productos")
+            fetch = FetchType.LAZY,
+            orphanRemoval = true)
     @ToString.Exclude
-    private Set<CarritoComprasEntity> carritosCompra;
+    private Set<CarritoComprasProductoEntity> carritos;
     // UsuarioProductoEntity
     @JsonIgnore
     @ManyToMany(fetch = FetchType.LAZY,
