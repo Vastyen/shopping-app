@@ -8,21 +8,15 @@ import javax.servlet.http.HttpServletResponse;
 import com.backend.backend.Entities.LoginEntity;
 import com.backend.backend.Services.LoginService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-
-
-
 
 @Controller
 public class LoginController {
     @Autowired
-    private LoginService userService;
+    private LoginService loginService;
 
 
     @GetMapping("/login")
@@ -33,27 +27,20 @@ public class LoginController {
         return mav;
     }
 
-    @PostMapping("/login")
-    public String login(@ModelAttribute("user") LoginEntity user ) {
+    @GetMapping("/login/{username}/{password}")
+    public ResponseEntity<String> login(@PathVariable("username") String username, @PathVariable("password") String password ) {
 
-        LoginEntity oauthUser = userService.login(user.getUsername(), user.getPassword());
+        LoginEntity user = new LoginEntity(username, password);
+        LoginEntity oauthUser = loginService.login(user.getUsername(), user.getPassword());
 
 
         System.out.print(oauthUser);
-        if(Objects.nonNull(oauthUser))
-        {
-
-            return "redirect:/";
-
-
-        } else {
-            return "redirect:/login";
-
-
+        if (Objects.nonNull(oauthUser)) {
+            return ResponseEntity.ok("FUNCIONA");
         }
-
+        return ResponseEntity.ok("xd");
     }
-
+/*
     @RequestMapping(value = {"/logout"}, method = RequestMethod.POST)
     public String logoutDo(HttpServletRequest request,HttpServletResponse response)
     {
@@ -61,5 +48,5 @@ public class LoginController {
 
         return "redirect:/login";
     }
-
+*/
 }
