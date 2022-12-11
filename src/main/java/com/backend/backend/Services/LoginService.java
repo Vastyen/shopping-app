@@ -12,11 +12,10 @@ import org.springframework.stereotype.Service;
 @Service
 public class LoginService {
     @Autowired
-    private LoginRepository repo;
+    private LoginRepository loginRepository;
 
     public LoginEntity login(String username, String password) {
-        LoginEntity user = repo.findByUsernameAndPassword(username, password);
-        return user;
+        return loginRepository.findByUsernameAndPassword(username, password);
     }
 
 }

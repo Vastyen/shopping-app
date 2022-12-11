@@ -27,7 +27,7 @@ public class CarritoComprasProductoController {
         }
         return ResponseEntity.ok(carritoComprasProductoEntities);
     }
-
+/*
     @GetMapping("/getProductosCarritoComprasByIdUsuario/{id_usuario}")
     public ResponseEntity<ArrayList<CarritoComprasProductoEntity>> getProductosCarritoComprasByIdUsuario(@PathVariable("id_usuario") Integer id_usuario) {
         ArrayList<CarritoComprasProductoEntity> carritoComprasProductoEntities = carritoComprasProductoService.getProductosCarritoComprasByIdUsuario(id_usuario);
@@ -40,7 +40,7 @@ public class CarritoComprasProductoController {
         }
         return ResponseEntity.ok(carritoComprasProductoEntities);
     }
-
+*/
 
 
 

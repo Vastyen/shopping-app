@@ -17,7 +17,7 @@ public class CarritoComprasProductoService {
         return (ArrayList<CarritoComprasProductoEntity>) carritoComprasProductoRepository.findAll();
     }
 
-    public ArrayList<CarritoComprasProductoEntity> getProductosCarritoComprasByIdUsuario(Integer idUsuario) {
-        return carritoComprasProductoRepository.getProductosCarritoComprasByIdUsuario(idUsuario);
-    }
+    //public ArrayList<CarritoComprasProductoEntity> getProductosCarritoComprasByIdUsuario(Integer idUsuario) {
+        //return carritoComprasProductoRepository.getProductosCarritoComprasByIdUsuario(idUsuario);
+    //}
 }

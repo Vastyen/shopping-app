@@ -46,7 +46,7 @@ public class ProductoController {
         productoUpdated.setStock(producto.getStock());
         productoUpdated.setTipo(producto.getTipo());
         productoUpdated.setVentas_producto(producto.getVentas_producto());
-        productoUpdated.setCarritosCompra(producto.getCarritosCompra());
+        productoUpdated.setCarritos(producto.getCarritos());
         productoService.updateProducto(productoUpdated);
         return ResponseEntity.ok(productoUpdated);
     }

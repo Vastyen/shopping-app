@@ -21,6 +21,14 @@ public class LoginEntity {
     private String username;
     private String password;
 
+    public LoginEntity(String username, String password){
+
+        super();
+        this.username = username;
+        this.password = password;
+
+    }
+
 
 
 
