@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.SortedSet;
 
 @Service
 public class ProductoService {
@@ -34,4 +35,9 @@ public class ProductoService {
     public void deleteProductoById(Integer id_producto) {
         productoRepository.deleteById(id_producto);
     }
+
+    public ArrayList<ProductoEntity> getOrdenProductos(Integer IdEmpresa) {
+        return productoRepository.getOrderedByVentas_producto(IdEmpresa);
+    }
+
 }

@@ -13,5 +13,6 @@ import java.util.Set;
 @Repository
 public interface UsuarioRepository extends JpaRepository<UsuarioEntity, Integer> {
     // Queries
+    UsuarioEntity findByCorreoAndContrasena(String Correo,String contrasena);
 
 }

@@ -14,7 +14,8 @@ import java.util.Set;
 @Setter
 @ToString
 @RequiredArgsConstructor
-@Entity
+@Entity(name = "producto")
+@Table(name = "producto")
 public class ProductoEntity {
 
     @Id
@@ -41,6 +42,14 @@ public class ProductoEntity {
             mappedBy = "productos")
     @ToString.Exclude
     private Set<UsuarioEntity> usuarios;
+    @JsonBackReference
+    @ManyToMany(fetch = FetchType.LAZY,
+            cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    @JoinTable(name = "empresa_producto",
+            joinColumns = {@JoinColumn(name = "id_producto")},
+            inverseJoinColumns = {@JoinColumn(name = "id_empresa")})
+    @ToString.Exclude
+    private Set<EmpresaEntity> empresas;
 
     @Override
     public boolean equals(Object o) {

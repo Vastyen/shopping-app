@@ -11,7 +11,8 @@ import java.util.Objects;
 @Setter
 @ToString
 @RequiredArgsConstructor
-@Entity
+@Entity(name = "pago")
+@Table(name = "pago")
 public class PagoEntity {
     @Id
     @Column(name = "id_pago", nullable = false, unique = true)

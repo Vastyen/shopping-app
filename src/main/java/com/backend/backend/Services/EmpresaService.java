@@ -30,4 +30,9 @@ public class EmpresaService {
     public ArrayList<EmpresaEntity> getAllEmpresas() {
         return (ArrayList<EmpresaEntity>) empresaRepository.findAll();
     }
+
+    public ArrayList<EmpresaEntity> getEmpresasMenor18() {
+        return empresaRepository.getParaEmpresasMenores(18);
+    }
+
 }

@@ -12,7 +12,8 @@ import java.util.Set;
 @Setter
 @ToString
 @RequiredArgsConstructor
-@Entity
+@Entity(name = "tipo_producto")
+@Table(name = "tipo_producto")
 public class TipoProductoEntity {
     @Id
     @Column(name = "id_TipoProducto", nullable = false, unique = true)

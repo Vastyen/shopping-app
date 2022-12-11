@@ -1,7 +1,6 @@
 package com.backend.backend.Entities;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.*;
 import lombok.*;
 import org.hibernate.Hibernate;
 
@@ -14,6 +13,7 @@ import java.util.Set;
 @ToString
 @RequiredArgsConstructor
 @Entity(name = "empresa")
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id_empresa")
 public class EmpresaEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -37,7 +37,7 @@ public class EmpresaEntity {
     @ToString.Exclude
     private Set<ValoracionEntity> valoraciones;
     // EmpresaProductoEntity
-    @JsonIgnore
+    @JsonManagedReference
     @ManyToMany(fetch = FetchType.LAZY,
             cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     @JoinTable(name = "empresa_producto",
@@ -55,13 +55,14 @@ public class EmpresaEntity {
     @ToString.Exclude
     private Set<TipoProductoEntity> tipos_productos;
     // EmpresasFavoritasEntity
-    @JsonBackReference
+
     @OneToMany(mappedBy = "id_empresa",
             fetch = FetchType.LAZY,
             cascade = {CascadeType.MERGE, CascadeType.PERSIST},
             orphanRemoval = true)
     @ToString.Exclude
     private Set<UsuarioEmpresaEntity> empresas_favoritas;
+
 
     @Override
     public boolean equals(Object o) {

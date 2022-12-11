@@ -34,4 +34,12 @@ public class CarritoComprasProductoController {
         }
         return ResponseEntity.ok(CarritoCompras);
     }
+    @GetMapping("/addProductoToMyCart/{id_carrito}/{id_producto}/{cantidad}")
+    public ResponseEntity<CarritoComprasProductoEntity> addProductoToMyCart(@PathVariable("id_producto") Integer id_producto, @PathVariable("id_carrito") Integer id_carrito, @PathVariable("cantidad") Integer cantidad) {
+        CarritoComprasProductoEntity carritoComprasProductoEntity = carritoComprasProductoService.addProductoToMyCart(id_producto, id_carrito, cantidad);
+        if (carritoComprasProductoEntity == null) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(carritoComprasProductoEntity);
+    }
 }

@@ -2,6 +2,7 @@ package com.backend.backend.Controllers;
 
 import com.backend.backend.Entities.EmpresaEntity;
 import com.backend.backend.Services.EmpresaService;
+import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 
 @Controller
+@RequestMapping("/empresa")
 public class EmpresaController {
 
     @Autowired
@@ -62,6 +64,18 @@ public class EmpresaController {
             return ResponseEntity.notFound().build();
         }
         return ResponseEntity.ok(empresaEntityList);
+    }
+    @GetMapping("/getEmpresasMenor18")
+    public ResponseEntity<ArrayList<EmpresaEntity>> getEmpresasMenor18() {
+        ArrayList<EmpresaEntity> empresaEntityList = empresaService.getEmpresasMenor18();
+        if (empresaEntityList == null) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(empresaEntityList);
+    }
+    @GetMapping("/getVentasProductosDESCByEmpresa/{id_empresa}")
+    public String getVentasProductosDESCByEmpresa(@PathVariable("id_empresa") Integer id_empresa) {
+        return "redirect:/producto/getProductosMasVendidosByIdEmpresa/" + id_empresa;
     }
 
 }

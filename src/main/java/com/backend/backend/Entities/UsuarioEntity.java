@@ -1,7 +1,9 @@
 package com.backend.backend.Entities;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.*;
 import org.hibernate.Hibernate;
 
@@ -14,14 +16,16 @@ import java.util.Set;
 @Setter
 @ToString
 @RequiredArgsConstructor
-@Entity
+@Entity(name = "usuario")
+@Table(name = "usuario")
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id_usuario")
 public class UsuarioEntity {
     @Id
     @Column(name = "id_usuario", nullable = false, unique = true)
     private Integer id_usuario;
     private String nombre_usuario;
     private String apellido_usuario;
-    private String correo_usuario;
+    private String correo;
     private String contrasena;
     private LocalDate fecha_nacimiento;
     // UbicacionGeograficaEntity
@@ -72,7 +76,6 @@ public class UsuarioEntity {
             orphanRemoval = true)
     @ToString.Exclude
     private Set<UsuarioEmpresaEntity> empresas_favoritas;
-
 
     @Override
     public boolean equals(Object o) {

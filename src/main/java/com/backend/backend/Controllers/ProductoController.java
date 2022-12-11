@@ -67,4 +67,13 @@ public class ProductoController {
         productoService.deleteProductoById(id_producto);
         return ResponseEntity.ok(productoDeleted);
     }
+
+    @GetMapping("/getProductosMasVendidosByIdEmpresa/{id_empresa}")
+    public ResponseEntity<ArrayList<ProductoEntity>> getProductosMasVendidosByIdEmpresa(@PathVariable("id_empresa") Integer id_empresa) {
+        ArrayList<ProductoEntity> productos = productoService.getOrdenProductos(id_empresa);
+        if (productos.isEmpty()) {
+            return ResponseEntity.noContent().build();
+        }
+        return ResponseEntity.ok(productos);
+    }
 }

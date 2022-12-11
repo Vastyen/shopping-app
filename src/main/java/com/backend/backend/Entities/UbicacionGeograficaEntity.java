@@ -6,6 +6,7 @@ import org.hibernate.Hibernate;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
 import java.util.Objects;
 
 // Relaciones Completas
@@ -13,7 +14,8 @@ import java.util.Objects;
 @Setter
 @ToString
 @RequiredArgsConstructor
-@Entity
+@Entity(name = "ubicacion_geografica")
+@Table(name = "ubicacion_geografica")
 public class UbicacionGeograficaEntity {
     @Id
     @Column(name = "id_ubicacion", nullable = false, unique = true)

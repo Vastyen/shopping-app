@@ -37,5 +37,26 @@ public class UsuarioService {
         return (ArrayList<UsuarioEntity>) usuarioRepository.findAll();
     }
 
-
+    public UsuarioEntity findByCorreoAndContrasena(String correo,String contrasena) {
+        return usuarioRepository.findByCorreoAndContrasena(correo, contrasena);
+    }
+    public UsuarioEntity updateUsuario(UsuarioEntity usuarioEntity) {
+        UsuarioEntity usuarioEntity1 = usuarioRepository.findById(usuarioEntity.getId_usuario()).orElse(null);
+        if (usuarioEntity1 == null) {
+            return null;
+        }
+        usuarioEntity1.setNombre_usuario(usuarioEntity.getNombre_usuario());
+        usuarioEntity1.setApellido_usuario(usuarioEntity.getApellido_usuario());
+        usuarioEntity1.setFecha_nacimiento(usuarioEntity.getFecha_nacimiento());
+        usuarioEntity1.setCorreo(usuarioEntity.getCorreo());
+        usuarioEntity1.setContrasena(usuarioEntity.getContrasena());
+        usuarioEntity1.setId_ubicacion(usuarioEntity.getId_ubicacion());
+        usuarioEntity1.setId_pago(usuarioEntity.getId_pago());
+        usuarioEntity1.setId_carrito(usuarioEntity.getId_carrito());
+        usuarioEntity1.setRol(usuarioEntity.getRol());
+        usuarioEntity1.setId_valoracion(usuarioEntity.getId_valoracion());
+        usuarioEntity1.setProductos(usuarioEntity.getProductos());
+        usuarioEntity1.setEmpresas_favoritas(usuarioEntity.getEmpresas_favoritas());
+        return usuarioRepository.save(usuarioEntity1);
+    }
 }

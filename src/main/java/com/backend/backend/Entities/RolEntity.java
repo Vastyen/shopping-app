@@ -13,7 +13,8 @@ import java.util.Set;
 @Setter
 @ToString
 @RequiredArgsConstructor
-@Entity
+@Entity(name = "rol")
+@Table(name = "rol")
 public class RolEntity {
     @Id
     @Column(nullable = false, unique = true)
