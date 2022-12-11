@@ -11,6 +11,7 @@ import javax.persistence.*;
 @Setter
 @ToString
 @RequiredArgsConstructor
+@Table(name = "carrito_compras_producto")
 public class CarritoComprasProductoEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -46,7 +46,7 @@ public class ProductoController {
         productoUpdated.setStock(producto.getStock());
         productoUpdated.setTipo(producto.getTipo());
         productoUpdated.setVentas_producto(producto.getVentas_producto());
-        productoUpdated.setCarritosCompra(producto.getCarritosCompra());
+        productoUpdated.setCarritos(producto.getCarritos());
         productoService.updateProducto(productoUpdated);
         return ResponseEntity.ok(productoUpdated);
     }
@@ -66,14 +66,5 @@ public class ProductoController {
         }
         productoService.deleteProductoById(id_producto);
         return ResponseEntity.ok(productoDeleted);
-    }
-    @PutMapping("/addProductoToCarrito/{id_producto}/{id_carrito}")
-    public ResponseEntity<ProductoEntity> addProductoToCarrito(@PathVariable("id_producto") Integer id_producto, @PathVariable("id_carrito") Integer id_carrito) {
-        ProductoEntity producto = productoService.getProductoById(id_producto);
-        if (producto == null) {
-            return ResponseEntity.notFound().build();
-        }
-        productoService.addProductoToCarrito(id_producto, id_carrito);
-        return ResponseEntity.ok(producto);
     }
 }

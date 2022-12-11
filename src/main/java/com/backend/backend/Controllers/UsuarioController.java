@@ -1,5 +1,7 @@
 package com.backend.backend.Controllers;
 
+import com.backend.backend.Entities.EmpresaEntity;
+import com.backend.backend.Entities.UsuarioEmpresaEntity;
 import com.backend.backend.Entities.UsuarioEntity;
 import com.backend.backend.Services.UsuarioEmpresaService;
 import com.backend.backend.Services.UsuarioService;
@@ -67,5 +69,15 @@ public class UsuarioController {
         }
         usuarioService.deleteUsuario(usuarioEntity);
         return ResponseEntity.ok(usuarioEntity);
+    }
+
+    @GetMapping("/getEmpresasFavoritasByUsuario/{id_usuario}")
+    public String getEmpresasFavoritas(@PathVariable("id_usuario") Integer id_usuario) {
+        return "redirect:/empresasFavoritas/getEmpresasFavoritasByIdUsuario/" + id_usuario;
+    }
+
+    @GetMapping("/getCarritoComprasByUsuario/{id_usuario}")
+    public String getCarritoCompras(@PathVariable("id_usuario") Integer id_usuario) {
+        return "redirect:/carritoCompras/getProductosByIdUsuario/" + id_usuario;
     }
 }

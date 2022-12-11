@@ -34,11 +34,4 @@ public class ProductoService {
     public void deleteProductoById(Integer id_producto) {
         productoRepository.deleteById(id_producto);
     }
-
-    public void addProductoToCarrito(Integer id_producto, Integer id_carrito) {
-        ProductoEntity producto = productoRepository.findById(id_producto).orElse(null);
-        if (producto == null) {
-            return;
-        }
-    }
 }

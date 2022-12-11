@@ -54,4 +54,5 @@ public class ProductoEntity {
     public int hashCode() {
         return getClass().hashCode();
     }
+
 }

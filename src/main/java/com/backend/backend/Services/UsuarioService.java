@@ -1,6 +1,7 @@
 package com.backend.backend.Services;
 
 import com.backend.backend.Entities.EmpresaEntity;
+import com.backend.backend.Entities.UsuarioEmpresaEntity;
 import com.backend.backend.Entities.UsuarioEntity;
 import com.backend.backend.Repositories.EmpresaRepository;
 import com.backend.backend.Repositories.UsuarioRepository;
@@ -35,5 +36,6 @@ public class UsuarioService {
     public ArrayList<UsuarioEntity> getAllUsuarios() {
         return (ArrayList<UsuarioEntity>) usuarioRepository.findAll();
     }
+
 
 }

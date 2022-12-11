@@ -43,6 +43,19 @@ public class UsuarioEmpresaController {
 
         return ResponseEntity.ok(empresas);
     }
+    @GetMapping("/getEmpresasFavoritas/{idUsuario}")
+    public ResponseEntity<ArrayList<EmpresaEntity>> getEmpresasFavoritasByIdUsuario(@PathVariable("idUsuario") Integer idUsuario) {
+        ArrayList<UsuarioEmpresaEntity> usuarioEmpresaEntity = usuarioEmpresaService.getEmpresasFavoritas(idUsuario);
+        if (usuarioEmpresaEntity == null) {
+            return ResponseEntity.notFound().build();
+        }
+        ArrayList<EmpresaEntity> empresas = new ArrayList<>();
+        for(UsuarioEmpresaEntity ue : usuarioEmpresaEntity){
+            empresas.add(ue.getId_empresa());
+        }
+        return ResponseEntity.ok(empresas);
+    }
+
     @PostMapping("/createUsuarioEmpresa")
     public ResponseEntity<UsuarioEmpresaEntity> createUsuarioEmpresa(@RequestBody UsuarioEmpresaEntity usuarioEmpresaEntity) {
         UsuarioEmpresaEntity usuarioEmpresaEntity1 = usuarioEmpresaService.createUsuarioEmpresa(usuarioEmpresaEntity);

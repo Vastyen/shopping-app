@@ -17,6 +17,9 @@ public class UsuarioEmpresaService {
     public ArrayList<UsuarioEmpresaEntity> getAllEmpresasFavoritas() {
         return (ArrayList<UsuarioEmpresaEntity>) usuarioEmpresaRepository.findAll();
     }
+    public ArrayList<UsuarioEmpresaEntity> getEmpresasFavoritas(Integer IdUsuario){
+        return usuarioEmpresaRepository.getFavoritos(IdUsuario);
+    }
     public UsuarioEmpresaEntity createUsuarioEmpresa(UsuarioEmpresaEntity usuarioEmpresaEntity) {
         usuarioEmpresaEntity.setFavorito(true);
         return usuarioEmpresaRepository.save(usuarioEmpresaEntity);
@@ -39,4 +42,5 @@ public class UsuarioEmpresaService {
         }
         return usuarioEmpresaEntity;
     }
+
 }

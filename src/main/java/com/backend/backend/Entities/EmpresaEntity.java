@@ -1,13 +1,18 @@
 package com.backend.backend.Entities;
+
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.Data;
+import lombok.*;
+import org.hibernate.Hibernate;
 
 import javax.persistence.*;
+import java.util.Objects;
 import java.util.Set;
-import java.util.stream.Collectors;
 
-@Data
+@Getter
+@Setter
+@ToString
+@RequiredArgsConstructor
 @Entity(name = "empresa")
 public class EmpresaEntity {
     @Id
@@ -21,6 +26,7 @@ public class EmpresaEntity {
     @JsonIgnore
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_ubicacion")
+    @ToString.Exclude
     private UbicacionGeograficaEntity id_ubicacion;
     // ValoracionEntity
     @JsonIgnore
@@ -28,6 +34,7 @@ public class EmpresaEntity {
             cascade = {CascadeType.MERGE, CascadeType.PERSIST},
             fetch = FetchType.LAZY,
             orphanRemoval = true)
+    @ToString.Exclude
     private Set<ValoracionEntity> valoraciones;
     // EmpresaProductoEntity
     @JsonIgnore
@@ -36,6 +43,7 @@ public class EmpresaEntity {
     @JoinTable(name = "empresa_producto",
             joinColumns = {@JoinColumn(name = "id_empresa")},
             inverseJoinColumns = {@JoinColumn(name = "id_producto")})
+    @ToString.Exclude
     private Set<ProductoEntity> productos;
     // EmpresaTipoProducto
     @JsonIgnore
@@ -44,6 +52,7 @@ public class EmpresaEntity {
     @JoinTable(name = "empresa_tipo_producto",
             joinColumns = {@JoinColumn(name = "id_empresa")},
             inverseJoinColumns = {@JoinColumn(name = "id_tipo_producto")})
+    @ToString.Exclude
     private Set<TipoProductoEntity> tipos_productos;
     // EmpresasFavoritasEntity
     @JsonBackReference
@@ -51,5 +60,19 @@ public class EmpresaEntity {
             fetch = FetchType.LAZY,
             cascade = {CascadeType.MERGE, CascadeType.PERSIST},
             orphanRemoval = true)
+    @ToString.Exclude
     private Set<UsuarioEmpresaEntity> empresas_favoritas;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
+        EmpresaEntity that = (EmpresaEntity) o;
+        return id_empresa != null && Objects.equals(id_empresa, that.id_empresa);
+    }
+
+    @Override
+    public int hashCode() {
+        return getClass().hashCode();
+    }
 }

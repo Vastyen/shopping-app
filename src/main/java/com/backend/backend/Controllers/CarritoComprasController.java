@@ -65,4 +65,13 @@ public class CarritoComprasController {
         }
         return ResponseEntity.ok(carritoComprasEntity);
     }
+    @GetMapping("/getProductosByIdUsuario/{id_usuario}")
+    public String getProductos(@PathVariable("id_usuario") Integer id_usuario) {
+        CarritoComprasEntity carritoComprasEntity = carritoComprasService.getCarritoComprasByIdUsuario(id_usuario);
+        if (carritoComprasEntity == null) {
+            return null;
+        }
+        return "redirect:/carritoComprasProducto/getProductosByIdCarritoCompras/" + carritoComprasEntity.getId();
+
+    }
 }
