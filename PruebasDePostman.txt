@@ -1,0 +1,499 @@
+-----------------------------CarritoCompras-----------------------------
+
+1) http://localhost:8080/carritoCompras/getAllCarritoCompras
+
+    peticion = GET
+
+2) http://localhost:8080/carritoCompras/getCarritoComprasById/{id_carrito}
+
+    peticion = GET
+
+3) http://localhost:8080/carritoCompras/getCarritoComprasByIdUsuario/{id_usuario}
+
+    peticion = GET
+
+4) http://localhost:8080/carritoCompras/updateCarritoComprasById/{id_carrito}
+
+    peticion = PUT
+
+5) http://localhost:8080/carritoCompras/createCarritoCompras
+
+    peticion = POST
+    {
+        "id_carrito": 10
+        "id_usuario": 2
+    }
+
+6) http://localhost:8080/carritoCompras/deleteCarritoComprasById/{id_carrito}
+
+    peticion = DELETE
+
+7) http://localhost:8080/carritoCompras/getProductosByIdUsuario/{id_usuario}
+
+    peticion = GET
+
+8) http://localhost:8080/carritoCompras/addProductoToMyCart/{id_usuario}/{id_producto}/{cantidad}
+
+    peticion = GET
+
+
+-----------------------------CarritoCompras-----------------------------
+
+
+1) http://localhost:8080/carritoComprasProducto/getAllCarritoComprasProducto
+
+    peticion = GET
+
+2) http://localhost:8080/carritoComprasProducto/getProductosByIdCarritoCompras/{id_carrito}
+
+    peticion = GET
+
+3) http://localhost:8080/carritoComprasProducto/addProductoToMyCart/{id_carrito}/{id_producto}/{cantidad}
+
+    peticion = GET
+
+
+-----------------------------Empresa-----------------------------
+
+
+
+1) http://localhost:8080/empresa/getEmpresaById/{id_empresa}
+
+    peticion = GET
+
+2) http://localhost:8080/empresa/updateEmpresaById/{id_empresa}
+
+    peticion = PUT
+
+    {
+        "nombre_empresa" : "Diego S.A"
+        "restriccion_edad" : 18
+        "id_ubicacion" : 1
+    }
+
+3) http://localhost:8080/empresa/createEmpresa
+
+    peticion = POST
+
+    {
+        "id_empresa" : 20
+        "nombre_empresa" : "Alan S.A."
+        "restriccion_edad" : 18
+        "id_ubicacion" : 2
+    }
+
+4) http://localhost:8080/empresa/deleteEmpresaById/{id_empresa}
+
+    peticion = DELETE
+
+5) http://localhost:8080/empresa/getAllEmpresas
+
+    peticion = GET
+
+6) http://localhost:8080/empresa/getEmpresasMenor18
+
+    peticion = GET
+
+7) http://localhost:8080/empresa/getVentasProductosDESCByEmpresa/{id_empresa}
+
+    peticion = GET
+
+
+-----------------------------MetodoPago-----------------------------
+
+
+1) http://localhost:8080/metodoPago/getAllMetodoPago
+
+    peticion = GET
+
+2) http://localhost:8080/metodoPago/getMetodoPagoById/{id_metodo_pago}
+
+    peticion = GET
+
+3) http://localhost:8080/metodoPago/updateMetodoPagoById/{id_metodo_pago}
+
+    peticion = PUT
+
+    {
+        "metodo_pago" : "CuentaRut"
+    }
+
+4) http://localhost:8080/metodoPago/createMetodoPago
+
+    peticion = POST
+
+    {
+        "id" : 100
+        "metodo_pago" : "CuentaRut"
+    }
+
+5) http://localhost:8080/metodoPago/deleteMetodoPagoById/{id_metodo_pago}
+
+    peticion = DELETE
+
+
+-----------------------------MetodoPago-----------------------------
+
+1) http://localhost:8080/pago/getAllPago
+
+    peticion = GET
+
+2) http://localhost:8080/pago/getPagoById/{id_pago}
+
+    peticion = GET
+
+3) http://localhost:8080/pago/updatePagoById/{id_pago}
+
+    peticion = PUT
+
+    {   
+        "monto" : 100.0
+        "id_usuario" : 1
+        "metodo_pago" : "CuentaRut"
+    }
+
+4) http://localhost:8080/pago/createPago
+
+    peticion = POST
+
+    {   
+        "id_pago" : 20
+        "monto" : 200.0
+        "id_usuario" : 3
+        "metodo_pago" : "CuentaRut"
+    }
+
+
+5) http://localhost:8080/pago/deletePagoById/{id_pago}
+
+    peticion = DELETE
+
+
+-----------------------------MetodoPago-----------------------------
+
+
+1) http://localhost:8080/permiso/getAllPermisos
+
+    peticion = GET
+
+2) http://localhost:8080/permiso/getPermisoById/{id_permiso}
+
+    peticion = GET
+
+3) http://localhost:8080/permiso/updatePermisoById/{id_permiso}
+
+    peticion = PUT
+
+    {   
+        "permiso" : "permiso1"
+        "id_rol" : 1 
+    }
+
+4) http://localhost:8080/permiso/createPermiso
+
+    peticion = POST
+
+    {   
+        "id" : 20
+        "permiso" : "permiso2"
+        "id_rol" : 1
+    }
+
+
+5) http://localhost:8080/permiso/deletePermisoById/{id_permiso}
+
+    peticion = DELETE
+
+
+-----------------------------Producto-----------------------------
+
+
+1) http://localhost:8080/producto/getAllProductos
+
+    peticion = GET
+
+2) http://localhost:8080/producto/getProductoById/{id}
+
+    peticion = GET
+
+3) http://localhost:8080/producto/updateProductoById/{id_producto}
+
+    peticion = PUT
+
+    {   
+        "permiso" : "permiso1"
+        "id_rol" : 1 
+    }
+
+4) http://localhost:8080/producto/createProducto
+
+    peticion = POST
+
+    {   
+        "id" : 20
+        "permiso" : "permiso2"
+        "id_rol" : 1
+    }
+
+5) http://localhost:8080/producto/deleteProductoById/{id_producto}
+
+    peticion = DELETE
+
+6) http://localhost:8080/producto/getProductosMasVendidosByIdEmpresa/{id_empresa}
+
+    peticion = GET
+
+
+-----------------------------Rol-----------------------------
+
+
+1) http://localhost:8080/rol/getAllRoles
+
+    peticion = GET
+
+2) http://localhost:8080/rol/getRolById/{id_rol}
+
+    peticion = GET
+
+3) http://localhost:8080/rol/updateRolById/{id_rol}
+
+    peticion = PUT
+
+    {   
+        "alias_rol" : "adm"
+        "nombre_rol" : "Administrador" 
+    }
+
+4) http://localhost:8080/rol/createRol
+
+    peticion = POST
+
+    {   
+        "id" : 20
+        "alias_rol" : "uste"
+        "nombre_rol" : "UsuarioTemporal"
+    }
+
+5) http://localhost:8080/rol/deleteRolById/{id_rol}
+
+    peticion = DELETE
+
+
+-----------------------------TipoProducto-----------------------------
+
+
+1) http://localhost:8080/tipoProducto/getAllTipoProducto
+
+    peticion = GET
+
+2) http://localhost:8080/tipoProducto/getTipoProductoById/{id_tipo_producto}
+
+    peticion = GET
+
+3) http://localhost:8080/tipoProducto/updateTipoProductoById/{id_tipo_producto}
+
+    peticion = PUT
+
+    {   
+        "nombre_tipo" : "alimento_no_perecible"
+    }
+
+4) http://localhost:8080/tipoProducto/createTipoProducto
+
+    peticion = POST
+
+    {   
+        "id_tipo_producto" : 20
+        "nombre_tipo" : "galletas"
+    }
+
+5) http://localhost:8080/deleteTipoProductoById/{id_tipo_producto}
+
+    peticion = DELETE
+
+
+-----------------------------UbicacionGeografica-----------------------------
+
+
+1) http://localhost:8080/ubicacionGeografica/getAllUbicacionGeografica
+
+    peticion = GET
+
+2) http://localhost:8080/ubicacionGeografica/getUbicacionGeograficaById/{id_ubicacion_geografica}
+
+    peticion = GET
+
+3) http://localhost:8080/ubicacionGeografica/updateUbicacionGeograficaById/{id_ubicacion_geografica}
+
+    peticion = PUT
+
+    {   
+        "nombre_tipo" : "alimento_no_perecible"
+    }
+
+4) http://localhost:8080/ubicacionGeografica/createUbicacionGeografica
+
+    peticion = POST
+
+    {   
+        "id_tipo_producto" : 20
+        "nombre_tipo" : "galletas"
+    }
+
+5) http://localhost:8080/ubicacionGeografica/deleteUbicacionGeograficaById/{id_ubicacion_geografica}
+
+    peticion = DELETE
+
+6) http://localhost:8080/ubicacionGeografica/getUbicacionGeograficaByRegion/{region}
+
+    peticion = GET
+
+7) http://localhost:8080/ubicacionGeografica/getUbicacionGeograficaByComuna/{comuna}
+
+    peticion = GET
+
+8) http://localhost:8080/ubicacionGeografica/getUbicacionGeograficaByDireccion/{direccion}
+
+    peticion = GET
+
+
+-----------------------------Usuario-----------------------------
+
+
+1) http://localhost:8080/usuario/getAllUsuarios
+
+    peticion = GET
+
+2) http://localhost:8080/usuario/getUsuarioById/{id_usuario}
+
+    peticion = GET
+
+3) http://localhost:8080/usuario/updateUsuario
+
+    peticion = PUT
+
+    {   
+        "apellido_usuario" : "Ramirez"
+        "contrasena" : "12345"
+        "correo" : "diego.ramirez@usach.cl"
+        "fecha_nacimiento" : "2001-01-27"
+        "nombre_usuario" : "Diego"
+        "id_ubicacion" : 1
+        "id_rol" : 1
+    }
+
+
+4) http://localhost:8080/usuario/RegistroUsuario
+
+    peticion = POST
+
+    {   
+        "id_usuario" : 20
+        "apellido_usuario" : "Dicaprio"
+        "contrasena" : "1234"
+        "correo" : "leonardo.dicaprio@usach.cl"
+        "fecha_nacimiento" : "1974-11-11"
+        "nombre_usuario" : "Leonardo"
+        "id_ubicacion" : 1
+        "id_rol" : 1
+    }
+
+5) http://localhost:8080/usuario/login/{correo}/{contrasena}
+
+    peticion = GET
+
+6) http://localhost:8080/usuario/deleteUsuarioById/{id_usuario}
+
+    peticion = DELETE
+
+7) http://localhost:8080/usuario/getEmpresasFavoritasByUsuario/{id_usuario}
+
+    peticion = GET
+
+8) http://localhost:8080/usuario/getCarritoComprasByUsuario/{id_usuario}
+
+    peticion = GET
+
+9) http://localhost:8080/usuario/showEmpresasByIdUsuario/{id_usuario}
+
+    peticion = GET
+
+10) http://localhost:8080/usuario/addProductoToMyCart/{id_usuario}/{id_producto}/{cantidad}
+
+    peticion = GET
+
+
+-----------------------------EmpresasFavoritas-----------------------------
+
+
+1) http://localhost:8080/empresasFavoritas/getAllEmpresasFavoritas
+
+    peticion = GET
+
+2) http://localhost:8080/empresasFavoritas/getEmpresasFavoritasByIdUsuario/{idUsuario}
+
+    peticion = GET
+
+3) http://localhost:8080/empresasFavoritas/getEmpresasFavoritas/{idUsuario}
+
+    peticion = GET
+
+4) http://localhost:8080/empresasFavoritas/createUsuarioEmpresa
+
+    peticion = POST
+
+    {   
+        "favorito" : "true"
+        "id_empresa" : 3
+        "id_usuario" : 4
+    }
+
+5) http://localhost:8080/empresasFavoritas/updateLikeEmpresa/{status}
+
+    peticion = PUT
+
+    {   
+        "id_empresa" : 3
+        "id_usuario" : 4
+    }
+    
+
+-----------------------------Valoracion-----------------------------
+
+
+1) http://localhost:8080/valoracion/getAllValoracion
+
+    peticion = GET
+
+2) http://localhost:8080/valoracion/getValoracionById/{id_valoracion}
+
+    peticion = GET
+
+3) http://localhost:8080/valoracion/updateValoracionById/{id_valoracion}
+
+    peticion = PUT
+
+    {   
+        "comentario" : "Muy buen producto"
+        "estrellas" : 5
+        "nombre_empresa" : "Diego Inc"
+        "id_empresa" : 1
+        "id_usuario" : 2
+    }
+
+4) http://localhost:8080/valoracion/createValoracion
+
+    peticion = POST
+
+    {   
+        "id_valoracion" : 20
+        "comentario" : "Muy buen producto"
+        "estrellas" : 5
+        "nombre_empresa" : "Ale Inc"
+        "id_empresa" : 1
+        "id_usuario" : 2
+    }
+
+5) http://localhost:8080/valoracion/deleteValoracionById/{id_valoracion}
+
+    peticion = DELETE
