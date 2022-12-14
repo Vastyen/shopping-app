@@ -165,7 +165,7 @@ VALUES
     ('Tarjeta de Credito');
 
 INSERT INTO public.pago(
-    monto, id_usuario, metodo_pago)
+    monto, id_usuario, id_metodo_pago)
 VALUES
     (2000, 218588038, 1),
     (5000, 218588038, 1),
