@@ -37,9 +37,8 @@ public class EmpresaEntity {
     @ToString.Exclude
     private Set<ValoracionEntity> valoraciones;
     // EmpresaProductoEntity
-    @JsonManagedReference
     @ManyToMany(fetch = FetchType.LAZY,
-            cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+            cascade = CascadeType.ALL)
     @JoinTable(name = "empresa_producto",
             joinColumns = {@JoinColumn(name = "id_empresa")},
             inverseJoinColumns = {@JoinColumn(name = "id_producto")})
@@ -56,6 +55,7 @@ public class EmpresaEntity {
     private Set<TipoProductoEntity> tipos_productos;
     // EmpresasFavoritasEntity
 
+    @JsonManagedReference(value = "empresa")
     @OneToMany(mappedBy = "id_empresa",
             fetch = FetchType.LAZY,
             cascade = {CascadeType.MERGE, CascadeType.PERSIST},

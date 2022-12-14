@@ -1,14 +1,12 @@
 package com.backend.backend.Entities;
 
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import com.fasterxml.jackson.annotation.*;
 import lombok.*;
 import org.hibernate.Hibernate;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
@@ -18,7 +16,6 @@ import java.util.Set;
 @RequiredArgsConstructor
 @Entity(name = "usuario")
 @Table(name = "usuario")
-@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id_usuario")
 public class UsuarioEntity {
     @Id
     @Column(name = "id_usuario", nullable = false, unique = true)
@@ -47,35 +44,24 @@ public class UsuarioEntity {
     @ToString.Exclude
     private Set<PagoEntity> id_pago;
     // CarritoComprasEntity
-    @JsonManagedReference
-    @OneToMany(mappedBy = "id_usuario",
+    @JsonManagedReference(value = "usuario")
+    @OneToOne(mappedBy = "id_usuario",
             cascade = {CascadeType.MERGE, CascadeType.PERSIST},
-            fetch = FetchType.LAZY,
             orphanRemoval = true)
-    @ToString.Exclude
-    private Set<CarritoComprasEntity> id_carrito;
+    private CarritoComprasEntity id_carrito_compras;
     // RolEntity
-    @JsonIgnore
-    @ManyToOne
+    @JsonBackReference(value = "rol")
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_rol")
     private RolEntity rol;
-    // UsuarioProductoEntity
-    @JsonIgnore
-    @ManyToMany(fetch = FetchType.LAZY,
-            cascade = {CascadeType.MERGE, CascadeType.PERSIST})
-    @JoinTable(name = "usuario_producto",
-            joinColumns = {@JoinColumn(name = "id_usuario")},
-            inverseJoinColumns = {@JoinColumn(name = "id_producto")})
-    @ToString.Exclude
-    private Set<ProductoEntity> productos;
     // EmpresasFavoritasEntity
-    @JsonManagedReference
+    @JsonManagedReference(value = "usuario")
     @OneToMany(mappedBy = "id_usuario",
             fetch = FetchType.LAZY,
             cascade = {CascadeType.MERGE, CascadeType.PERSIST},
             orphanRemoval = true)
     @ToString.Exclude
-    private Set<UsuarioEmpresaEntity> empresas_favoritas;
+    private Set<UsuarioEmpresaEntity> empresas_favoritas = new HashSet<>();
 
     @Override
     public boolean equals(Object o) {
@@ -89,4 +75,5 @@ public class UsuarioEntity {
     public int hashCode() {
         return getClass().hashCode();
     }
+
 }

@@ -16,6 +16,7 @@ import java.util.Objects;
 @Table(name = "permiso")
 public class PermisoEntity {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(nullable = false, unique = true)
     private Integer id;
     @ManyToOne

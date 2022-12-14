@@ -16,8 +16,6 @@ public class UsuarioService {
 
     @Autowired
     UsuarioRepository usuarioRepository;
-    @Autowired
-    EmpresaRepository empresaRepository;
     public UsuarioEntity getUsuarioById(Integer id_usuario) {
         return usuarioRepository.findById(id_usuario).orElse(null);
     }
@@ -51,12 +49,10 @@ public class UsuarioService {
         usuarioEntity1.setCorreo(usuarioEntity.getCorreo());
         usuarioEntity1.setContrasena(usuarioEntity.getContrasena());
         usuarioEntity1.setId_ubicacion(usuarioEntity.getId_ubicacion());
-        usuarioEntity1.setId_pago(usuarioEntity.getId_pago());
-        usuarioEntity1.setId_carrito(usuarioEntity.getId_carrito());
+        usuarioEntity1.setId_carrito_compras(usuarioEntity.getId_carrito_compras());
         usuarioEntity1.setRol(usuarioEntity.getRol());
         usuarioEntity1.setId_valoracion(usuarioEntity.getId_valoracion());
-        usuarioEntity1.setProductos(usuarioEntity.getProductos());
-        usuarioEntity1.setEmpresas_favoritas(usuarioEntity.getEmpresas_favoritas());
         return usuarioRepository.save(usuarioEntity1);
     }
+
 }

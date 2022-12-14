@@ -1,6 +1,7 @@
 package com.backend.backend.Entities;
 
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 import org.hibernate.Hibernate;
 
@@ -17,10 +18,12 @@ import java.util.Set;
 @Table(name = "rol")
 public class RolEntity {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(nullable = false, unique = true)
     private Integer id;
     private String nombre_rol;
     private String alias_rol;
+    @JsonManagedReference(value = "rol")
     @OneToMany(mappedBy = "rol",
             cascade = {CascadeType.MERGE, CascadeType.PERSIST},
             fetch = FetchType.LAZY,

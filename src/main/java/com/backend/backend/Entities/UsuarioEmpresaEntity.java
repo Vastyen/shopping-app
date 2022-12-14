@@ -21,13 +21,13 @@ public class UsuarioEmpresaEntity {
     private Integer id;
     private boolean favorito;
     // UsuarioEntity
-    @JsonBackReference
+    @JsonBackReference(value = "usuario")
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_usuario")
     @ToString.Exclude
     private UsuarioEntity id_usuario;
     // EmpresaEntity
-    @JsonManagedReference
+    @JsonBackReference(value = "empresa")
     @ManyToOne
     @JoinColumn(name = "id_empresa")
     private EmpresaEntity id_empresa;

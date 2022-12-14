@@ -1,6 +1,7 @@
 package com.backend.backend.Services;
 
 import com.backend.backend.Entities.UbicacionGeograficaEntity;
+import com.backend.backend.Entities.UsuarioEntity;
 import com.backend.backend.Repositories.UbicacionGeograficaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -46,4 +47,5 @@ public class UbicacionGeograficaService {
     public ArrayList<UbicacionGeograficaEntity> getUbicacionGeograficaByDireccion(String direccion) {
         return ubicacionGeograficaRepository.findByDireccion(direccion);
     }
+
 }

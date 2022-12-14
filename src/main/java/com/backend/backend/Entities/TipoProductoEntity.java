@@ -16,6 +16,7 @@ import java.util.Set;
 @Table(name = "tipo_producto")
 public class TipoProductoEntity {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_TipoProducto", nullable = false, unique = true)
     private Integer id;
     private String nombre_tipo;

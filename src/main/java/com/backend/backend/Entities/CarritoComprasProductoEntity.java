@@ -19,12 +19,12 @@ public class CarritoComprasProductoEntity {
     private Integer id;
     private Integer cantidad;
     // CarritoComprasEntity
-    @JsonBackReference
+    @JsonBackReference(value = "carrito")
     @ManyToOne
     @JoinColumn(name = "id_carrito")
     private CarritoComprasEntity id_carrito;
     // ProductoEntity
-    @JsonManagedReference
+    @JsonBackReference(value = "producto")
     @ManyToOne
     @JoinColumn(name = "id_producto")
     private ProductoEntity id_producto;

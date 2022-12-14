@@ -15,6 +15,7 @@ import java.util.Objects;
 @Table(name = "metodo_pago")
 public class MetodoPagoEntity {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(nullable = false, unique = true)
     private Integer id;
     private String metodo_pago;

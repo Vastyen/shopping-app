@@ -1,6 +1,7 @@
 package com.backend.backend.Controllers;
 
 import com.backend.backend.Entities.UbicacionGeograficaEntity;
+import com.backend.backend.Entities.UsuarioEntity;
 import com.backend.backend.Services.UbicacionGeograficaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -25,7 +26,6 @@ public class UbicacionGeograficaController {
         }
         return ResponseEntity.ok(ubicacionGeograficaList);
     }
-
     @GetMapping("/getUbicacionGeograficaById/{id_ubicacion_geografica}")
     public ResponseEntity<UbicacionGeograficaEntity> getUbicacionGeograficaById(@PathVariable("id_ubicacion_geografica") Integer id_ubicacion_geografica) {
         UbicacionGeograficaEntity ubicacionGeograficaEntity = ubicacionGeograficaService.getUbicacionGeograficaById(id_ubicacion_geografica);

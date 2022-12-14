@@ -15,6 +15,7 @@ import java.util.Objects;
 @Table(name = "pago")
 public class PagoEntity {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_pago", nullable = false, unique = true)
     private Integer id;
     private Float monto;

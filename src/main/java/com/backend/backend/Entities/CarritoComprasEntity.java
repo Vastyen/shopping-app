@@ -21,12 +21,13 @@ public class CarritoComprasEntity {
     @Column(name = "id_carrito", nullable = false, unique = true)
     private Integer id;
     // UsuarioEntity
-    @JsonBackReference
-    @ManyToOne
+    @JsonBackReference(value = "usuario")
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_usuario")
+    @ToString.Exclude
     private UsuarioEntity id_usuario;
     // ProductoCarritoEntity
-    @JsonManagedReference
+    @JsonManagedReference(value = "carrito")
     @OneToMany(mappedBy = "id_carrito",
             cascade = {CascadeType.MERGE, CascadeType.PERSIST},
             fetch = FetchType.LAZY,

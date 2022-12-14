@@ -1,7 +1,7 @@
 package com.backend.backend.Entities;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 import org.hibernate.Hibernate;
 
@@ -19,6 +19,7 @@ import java.util.Set;
 public class ProductoEntity {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_producto", nullable = false, unique = true)
     private Integer id;
     private String nombre_producto;
@@ -28,26 +29,15 @@ public class ProductoEntity {
     private Integer stock;
     private Integer ventas_producto;
     // ProductoCarritoEntity
-    @JsonBackReference
+    @JsonManagedReference(value = "producto")
     @OneToMany(mappedBy = "id_producto",
             cascade = {CascadeType.MERGE, CascadeType.PERSIST},
             fetch = FetchType.LAZY,
             orphanRemoval = true)
     @ToString.Exclude
     private Set<CarritoComprasProductoEntity> carritos;
-    // UsuarioProductoEntity
-    @JsonIgnore
-    @ManyToMany(fetch = FetchType.LAZY,
-            cascade = {CascadeType.MERGE, CascadeType.PERSIST},
-            mappedBy = "productos")
-    @ToString.Exclude
-    private Set<UsuarioEntity> usuarios;
-    @JsonBackReference
-    @ManyToMany(fetch = FetchType.LAZY,
-            cascade = {CascadeType.MERGE, CascadeType.PERSIST})
-    @JoinTable(name = "empresa_producto",
-            joinColumns = {@JoinColumn(name = "id_producto")},
-            inverseJoinColumns = {@JoinColumn(name = "id_empresa")})
+
+    @ManyToMany(mappedBy = "productos")
     @ToString.Exclude
     private Set<EmpresaEntity> empresas;
 

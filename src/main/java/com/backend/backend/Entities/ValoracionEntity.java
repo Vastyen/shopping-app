@@ -15,9 +15,9 @@ import java.util.Objects;
 @Table(name = "valoracion")
 public class ValoracionEntity {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(nullable = false, unique = true)
     private Integer id_valoracion;
-    private String nombre_empresa;
     private Integer estrellas;
     private String comentario;
     @OneToOne

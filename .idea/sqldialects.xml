@@ -2,6 +2,7 @@
 <project version="4">
   <component name="SqlDialectMappings">
     <file url="file://$PROJECT_DIR$/src/main/java/com/backend/backend/Repositories/CarritoComprasRepository.java" dialect="PostgreSQL" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/backend/backend/Repositories/UbicacionGeograficaRepository.java" dialect="PostgreSQL" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/backend/backend/Repositories/UsuarioEmpresaRepository.java" dialect="PostgreSQL" />
   </component>
   <component name="SqlResolveMappings">
