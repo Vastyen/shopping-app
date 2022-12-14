@@ -1,5 +1,6 @@
 package com.backend.backend.Entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import org.hibernate.Hibernate;
 
@@ -19,9 +20,13 @@ public class PagoEntity {
     @Column(name = "id_pago", nullable = false, unique = true)
     private Integer id;
     private Float monto;
-    @OneToOne
-    @JoinColumn(name = "metodo_pago")
-    private MetodoPagoEntity metodo_pago;
+
+    @JsonIgnore
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_metodo_pago", nullable = false)
+    @ToString.Exclude
+    private MetodoPagoEntity id_metodo_pago;
+
     @ManyToOne
     @JoinColumn(name = "id_usuario")
     private UsuarioEntity id_usuario;

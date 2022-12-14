@@ -1,10 +1,12 @@
 package com.backend.backend.Entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import org.hibernate.Hibernate;
 
 import javax.persistence.*;
 import java.util.Objects;
+import java.util.Set;
 
 // Relaciones Listas
 @Getter
@@ -16,16 +18,15 @@ import java.util.Objects;
 public class MetodoPagoEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(nullable = false, unique = true)
+    @Column(name = "id_metodo_pago", nullable = false, unique = true)
     private Integer id;
     private String metodo_pago;
-    @OneToOne(mappedBy = "metodo_pago",
-            cascade = {CascadeType.MERGE, CascadeType.PERSIST},
-            fetch = FetchType.LAZY,
-            orphanRemoval = true)
+    @JsonIgnore
+    @OneToMany(mappedBy = "id_metodo_pago", fetch = FetchType.LAZY,
+                cascade = {CascadeType.PERSIST, CascadeType.MERGE},
+                orphanRemoval = true)
     @ToString.Exclude
-    private PagoEntity pago;
-
+    private Set<PagoEntity> pagos;
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
