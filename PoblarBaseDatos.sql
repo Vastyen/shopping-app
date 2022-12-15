@@ -2,24 +2,24 @@ INSERT INTO public.ubicacion_geografica(
     comuna, direccion, region)
 VALUES
     ('La Florida', 'Walker Martinez 980', 'Metropolitana'),
-    ('Maipu', 'Satelite', 'Los Lagos'),
-    ('Florida', '', 'Nuble'),
-    ('Estacion Central', '1', 'Metropolitana'),
-    ('Macul', '1', 'Metropolitana');
+    ('Maipu', 'Héctor Fuenzalida 1641-1659', 'Metropolitana'),
+    ('Florida', 'Las Hortensias 1113', 'BioBío'),
+    ('Chillán', '1000', 'Ñuble'),
+    ('Macul', 'Av. Macul 4701', 'Metropolitana');
 
 INSERT INTO public.empresa(
     nombre_empresa, restriccion_edad, id_ubicacion)
 VALUES
     ('Verduras Inc.', 18, 1),
-    ('Alimentos Inc.', 17, 1),
-    ('DBD Inc.', 17, 1),
-    ('USACH Inc.', 17, 1),
-    ('MILO In.c', 17, 1),
-    ('JOSE Inc.', 17, 1),
+    ('Alimentos Inc.', 17, 5),
+    ('DBD Inc.', 12, 3),
+    ('USACH Inc.', 10, 4),
+    ('MILO In.c', 17, 2),
+    ('JOSE Inc.', 17, 4),
     ('Javier Inc', 18, 1),
-    ('Frutas Inc.', 18, 1),
-    ('Chile Inc.', 18, 1),
-    ('HolaMundo Inc.', 18, 1);
+    ('Frutas Inc.', 18, 3),
+    ('Chile Inc.', 18, 4),
+    ('HolaMundo Inc.', 18, 5);
 
 INSERT INTO public.rol(
     id, alias_rol, nombre_rol)
@@ -39,7 +39,7 @@ VALUES
     (187833752,'Roman', '3124', 'pablo.roman@usach.cl', '2001-06-27', 'Pablo', 5, 2),
     (185433753,'Catalan', '2134', 'gaspar.catalan@usach.cl', '2001-07-27', 'Gaspar', 5, 3),
     (172868266,'Perez', '1324', 'fernando.perez@usach.cl', '2001-08-27', 'Fernando', 4, 3),
-    (120970623,'Moreria', '1432', 'ignacio.moreira@usach.cl', '2010-09-27', 'Ignacio', 2, 3),
+    (120970623,'Moreira', '1432', 'ignacio.moreira@usach.cl', '2010-09-27', 'Ignacio', 2, 3),
     (161094366,'Correa', '2143', 'vanina.correa@usach.cl', '2010-10-27', 'Vanina', 4, 1);
 
 INSERT INTO public.empresas_favoritas(
