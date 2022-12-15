@@ -21,6 +21,7 @@ public class MetodoPagoEntity {
     @Column(name = "id_metodo_pago", nullable = false, unique = true)
     private Integer id;
     private String metodo_pago;
+    // PagoEntity
     @JsonIgnore
     @OneToMany(mappedBy = "id_metodo_pago", fetch = FetchType.LAZY,
                 cascade = {CascadeType.PERSIST, CascadeType.MERGE},

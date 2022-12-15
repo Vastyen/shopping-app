@@ -19,6 +19,7 @@ public class PermisoEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(nullable = false, unique = true)
     private Integer id;
+    // RolEntity
     @ManyToOne
     @JoinColumn(name = "id_rol")
     private RolEntity rol;

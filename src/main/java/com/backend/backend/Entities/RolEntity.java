@@ -23,6 +23,7 @@ public class RolEntity {
     private Integer id;
     private String nombre_rol;
     private String alias_rol;
+    // UsuarioEntity
     @JsonManagedReference(value = "rol")
     @OneToMany(mappedBy = "rol",
             cascade = {CascadeType.MERGE, CascadeType.PERSIST},
@@ -30,6 +31,7 @@ public class RolEntity {
             orphanRemoval = true)
     @ToString.Exclude
     private Set<UsuarioEntity> usuarios;
+    // PermisoEntity
     @OneToMany(mappedBy = "rol",
             cascade = {CascadeType.MERGE, CascadeType.PERSIST},
             orphanRemoval = true)

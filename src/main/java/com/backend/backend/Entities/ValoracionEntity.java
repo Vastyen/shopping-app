@@ -20,9 +20,11 @@ public class ValoracionEntity {
     private Integer id_valoracion;
     private Integer estrellas;
     private String comentario;
+    // UsuarioEntity
     @OneToOne
     @JoinColumn(name = "id_usuario")
     private UsuarioEntity id_usuario;
+    // EmpresaEntity
     @ManyToOne
     @JoinColumn(name = "id_empresa")
     private EmpresaEntity id_empresa;

@@ -20,13 +20,13 @@ public class PagoEntity {
     @Column(name = "id_pago", nullable = false, unique = true)
     private Integer id;
     private Float monto;
-
+    // MetodoPagoEntity
     @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_metodo_pago", nullable = false)
     @ToString.Exclude
     private MetodoPagoEntity id_metodo_pago;
-
+    // UsuarioEntity
     @ManyToOne
     @JoinColumn(name = "id_usuario")
     private UsuarioEntity id_usuario;

@@ -36,7 +36,7 @@ public class ProductoEntity {
             orphanRemoval = true)
     @ToString.Exclude
     private Set<CarritoComprasProductoEntity> carritos;
-
+    // EmpresaEntity
     @ManyToMany(mappedBy = "productos")
     @ToString.Exclude
     private Set<EmpresaEntity> empresas;
